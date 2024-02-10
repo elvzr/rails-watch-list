@@ -1,0 +1,6 @@
+<%= form_with(model: [@list, @bookmark]) do |form| %>
+  <%= form.text_field :comment %>
+  <%= form.hidden_field :list_id, value: @list.id %>
+
+  <%= form.submit "Create Bookmark" %>
+<% end %>

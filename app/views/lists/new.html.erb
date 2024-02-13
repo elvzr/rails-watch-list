@@ -1,26 +1,8 @@
-<%= form_with(model: @list, url: lists_path) do |form| %>
-  <% if @list.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:</h2>
-
-      <ul>
-      <% @list.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<div class="container">
+  <h1>Create a new list</h1>
+  <%= simple_form_for @list do |f| %>
+    <%= f.input :name, placeholder: 'Movies' %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit class: "btn btn-flat" %>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-    <% if @list.errors[:name].include?("has already been taken") %>
-      <p class="text-danger">The name has already been taken. Please choose another one.</p>
-      <p class="text-info">Suggested name: <%= @list.name + rand(1000).to_s %></p>
-    <% end %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit 'Create List', class: 'btn btn-primary' %>
-  </div>
-<% end %>
+</div>

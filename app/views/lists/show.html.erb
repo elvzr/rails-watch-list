@@ -1,1 +1,15 @@
-<%= link_to "Delete Bookmark", bookmark_path(@bookmark), method: :delete, data: { confirm: "Are you sure?" } %>
+<h1><%= @list.name %></h1>
+
+<h6>MOVIES:</h6>
+<% if @list.movies.any? %>
+  <ul>
+    <% @list.movies.each do |movie| %>
+      <li><%= movie.title %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No movies found in this list.</p>
+<% end %>
+
+<%= link_to 'Delete List', @list, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+<%= link_to 'Back to all Lists', lists_path, class: 'btn btn-secondary' %>

@@ -1,21 +1,27 @@
-<div class="banner" style="background-image: url(https://images.unsplash.com/photo-1536440136628-849c177e76a1)">
-  <div class="container">
-    <h1>Curate lists of your favourite movies</h1>
-    <p>
-      <span id="banner-typed-text"></span>
-      <%= link_to '+ New List', new_list_path(@list) %>
-    </p>
+<div class="banner" style="background-image: url(https://images.unsplash.com/photo-1557683304-673a23048d34)">
+  <div class="container text-center text-white py-5">
+    <h1 class="display-4">Curate lists of your favourite movies</h1>
+    <p class="lead">Organise and manage your movie collection.</p>
+    <%= link_to '+ New List', new_list_path, class: "btn btn-outline-light btn-lg mt-3" %>
   </div>
 </div>
 
-<div class="container-list">
-  <div class="list-text">
-    <h3>My Lists</h3>
+<div class="container mt-5">
+  <h2 class="mb-4">My Lists</h2>
+  <div class="row">
     <% @lists.each do |list| %>
-      <li style="background-image: url(https://images.unsplash.com/photo-1536440136628-849c177e76a1);">
-        <%= link_to list.name, list_path(list) %>
-      </li>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card">
+          <% if list.photo.attached? %>
+            <%= image_tag list.photo, class: "card-img-top", alt: "List Cover", style: "height: 350px;" %>
+          <% else %>
+            <%= image_tag "placeholder_image.jpg", class: "card-img-top", alt: "Placeholder Image", style: "height: 350px;" %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to list.name, list_path(list), class: "text-dark" %> ➡️</h5>
+          </div>
+        </div>
+      </div>
     <% end %>
-    <%= link_to '+ New List', new_list_path(@list), class: "btn btn-success" %>
   </div>
 </div>
